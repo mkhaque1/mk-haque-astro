@@ -1,17 +1,461 @@
 ---
+import '../styles/global.css';
+import { profile, projects, skills, process } from '../data/portfolio';
 
+const year = new Date().getFullYear();
+const socialLinks = [
+  { label: 'GitHub', url: profile.github },
+  { label: 'LinkedIn', url: profile.linkedin },
+].filter((link) => link.url);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <meta
+      name='description'
+      content={`${profile.name}, ${profile.role}. Thoughtful interfaces, dependable systems, and considered digital experiences.`}
+    />
+    <meta name='theme-color' content='#111210' />
+    <meta
+      property='og:title'
+      content={`${profile.name} / Full Stack Developer`}
+    />
+    <meta
+      property='og:description'
+      content='Thoughtful interfaces. Dependable systems. Work with intention.'
+    />
+    <meta property='og:type' content='website' />
+    <title>{profile.name} / Full Stack Developer</title>
+    <link
+      rel='icon'
+      href="data:image/svg+xml,%3Csvg xmlns='[w3.org](http://www.w3.org/2000/svg)' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23111210'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-weight='700' font-size='30' fill='%23c9d49a'%3EMK%3C/text%3E%3C/svg%3E"
+    />
+  </head>
+
+  <body>
+    <a class='skip-link' href='#main'>Skip to content</a>
+    <div class='scroll-progress' aria-hidden='true'></div>
+
+    <header class='header'>
+      <a class='wordmark' href='#' aria-label='MK Haque home'>
+        mk<span>h.</span>
+      </a>
+
+      <nav aria-label='Main navigation'>
+        <a href='#work'>Work</a>
+        <a href='#expertise'>Expertise</a>
+        <a href='#about'>About</a>
+      </nav>
+
+      <a class='header-contact' href='#contact'>
+        Let's talk <span aria-hidden='true'>↗</span>
+      </a>
+    </header>
+
+    <main id='main'>
+      <section class='hero section-shell' aria-labelledby='hero-title'>
+        <div class='hero-topline'>
+          <p class='eyebrow'>
+            <span class='status-dot'></span> INDEPENDENT DEVELOPER
+          </p>
+          <p class='eyebrow hero-index'>PORTFOLIO / VOL. 01</p>
+        </div>
+
+        <div class='hero-grid'>
+          <div class='hero-copy'>
+            <p class='eyebrow hero-enter'>
+              HELLO, I'M {profile.name.toUpperCase()}
+            </p>
+
+            <h1 id='hero-title' class='hero-enter'>
+              Thoughtfully<br />
+              built.<br />
+              <span class='serif'>Fully</span> stacked<span class='accent'
+                >.</span
+              >
+            </h1>
+
+            <div class='hero-description hero-enter'>
+              <span class='small-cross' aria-hidden='true'>+</span>
+              <div>
+                <p class='role'>{profile.role}</p>
+                <p>{profile.intro}</p>
+              </div>
+            </div>
+
+            <a class='button hero-enter' href='#work'>
+              Explore the work <span aria-hidden='true'>↘</span>
+            </a>
+          </div>
+
+          <div class='hero-stage hero-enter'>
+            <div class='stage-corner corner-tl' aria-hidden='true'></div>
+            <div class='stage-corner corner-br' aria-hidden='true'></div>
+            <span class='stage-label eyebrow'>FIG. 01 / THE BUILDER</span>
+
+            <div
+              id='human-scene'
+              class='human-scene'
+              role='img'
+              aria-label='Interactive metallic human sculpture. Drag horizontally to rotate it, or use the rotation buttons.'
+            >
+              <div class='scene-fallback'>
+                <span>MK</span>
+                <p>THE HUMAN BEHIND THE CODE</p>
+              </div>
+            </div>
+
+            <div class='stage-note' aria-hidden='true'>
+              <span class='note-line'></span>
+              <span>Human thinking.<br />Digital precision.</span>
+            </div>
+
+            <div class='scene-toolbar'>
+              <span class='eyebrow' id='scene-hint'>DRAG TO ROTATE</span>
+              <div class='scene-buttons' aria-label='Rotate 3D figure'>
+                <button
+                  type='button'
+                  data-rotate='-1'
+                  aria-label='Rotate figure left'>←</button
+                >
+                <button
+                  type='button'
+                  data-rotate='1'
+                  aria-label='Rotate figure right'>→</button
+                >
+                <button
+                  type='button'
+                  id='reset-scene'
+                  aria-label='Reset figure rotation'>↺</button
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class='hero-bottom'>
+          <p class='eyebrow'>INTERFACE / INFRASTRUCTURE / INTERACTION</p>
+          <a class='eyebrow' href='#work'
+            >SCROLL TO DISCOVER <span aria-hidden='true'>↓</span></a
+          >
+        </div>
+      </section>
+
+      <div class='ticker' aria-hidden='true'>
+        <div class='ticker-track'>
+          {
+            [0, 1].map(() => (
+              <span>
+                CREATIVE THINKING <i>✳</i> TECHNICAL PRECISION <i>✳</i>
+                HUMAN EXPERIENCE <i>✳</i> FULL STACK DEVELOPMENT <i>✳</i>
+              </span>
+            ))
+          }
+        </div>
+      </div>
+
+      <section
+        id='work'
+        class='section-shell section-space'
+        aria-labelledby='work-title'
+      >
+        <div class='section-heading' data-reveal>
+          <div>
+            <p class='eyebrow'>01 / SELECTED DIRECTIONS</p>
+            <h2 id='work-title'>
+              Less ordinary.<br /><span class='serif'>More considered.</span>
+            </h2>
+          </div>
+          <p class='section-aside'>
+            A space for products with purpose.<br />
+            Sample concepts shown below.
+          </p>
+        </div>
+
+        <div
+          class='filters'
+          role='group'
+          aria-label='Filter projects'
+          data-reveal
+        >
+          <button
+            type='button'
+            class='filter active'
+            data-filter='all'
+            aria-pressed='true'
+          >
+            All work <span>03</span>
+          </button>
+          <button
+            type='button'
+            class='filter'
+            data-filter='fullstack'
+            aria-pressed='false'
+          >
+            Full stack
+          </button>
+          <button
+            type='button'
+            class='filter'
+            data-filter='frontend'
+            aria-pressed='false'
+          >
+            Frontend
+          </button>
+        </div>
+
+        <p id='filter-status' class='sr-only' aria-live='polite'></p>
+
+        <div class='projects'>
+          {
+            projects.map((project) => (
+              <article
+                class='project'
+                data-category={project.category}
+                data-reveal
+              >
+                <div class={`project-art ${project.theme}`} data-tilt>
+                  <div class='art-top'>
+                    <span>{project.number} / CONCEPT STUDY</span>
+                    <span>{project.type.toUpperCase()}</span>
+                  </div>
+
+                  <div class='art-object' aria-hidden='true'>
+                    <div class='object-ring ring-one' />
+                    <div class='object-ring ring-two' />
+                    <div class='object-core' />
+                  </div>
+
+                  <div class='art-title'>
+                    <h3>
+                      {project.title}
+                      <span>®</span>
+                    </h3>
+                    <p>{project.label}</p>
+                  </div>
+
+                  <span class='art-mark' aria-hidden='true'>
+                    ↗
+                  </span>
+                </div>
+
+                <div class='project-info'>
+                  <div>
+                    <p class='eyebrow'>
+                      {project.type} / {project.year}
+                    </p>
+                    <p class='project-description'>{project.description}</p>
+                  </div>
+
+                  <div class='project-tech'>
+                    {project.stack.map((technology) => (
+                      <span>{technology}</span>
+                    ))}
+                    {project.url && (
+                      <a
+                        href={project.url}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                      >
+                        View project ↗
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+
+      <section
+        id='expertise'
+        class='expertise section-space'
+        aria-labelledby='skills-title'
+      >
+        <div class='section-shell'>
+          <div class='section-heading' data-reveal>
+            <div>
+              <p class='eyebrow'>02 / THE TOOLKIT</p>
+              <h2 id='skills-title'>
+                Different layers.<br /><span class='serif'
+                  >One perspective.</span>
+              </h2>
+            </div>
+            <p class='section-aside'>
+              Not a wall of logos.<br />
+              A connected way of building.
+            </p>
+          </div>
+
+          <div class='skill-system' data-reveal>
+            <div
+              class='skill-selector'
+              role='group'
+              aria-label='Explore skill layers'
+            >
+              {
+                skills.map((skill, index) => (
+                  <button
+                    type='button'
+                    class:list={['skill-button', { active: index === 0 }]}
+                    data-skill={skill.id}
+                    aria-pressed={index === 0 ? 'true' : 'false'}
+                    aria-controls={`panel-${skill.id}`}
+                  >
+                    <span class='eyebrow'>{skill.number}</span>
+                    <span>{skill.title}</span>
+                    <span aria-hidden='true'>↗</span>
+                  </button>
+                ))
+              }
+            </div>
+
+            <div class='skill-display' data-tilt>
+              <div class='skill-orbit' aria-hidden='true'>
+                <div></div><div></div><div></div>
+                <span>MK</span>
+              </div>
+
+              {
+                skills.map((skill, index) => (
+                  <div
+                    id={`panel-${skill.id}`}
+                    class='skill-panel'
+                    hidden={index !== 0}
+                  >
+                    <p class='eyebrow'>
+                      LAYER {skill.number} / {skill.title.toUpperCase()}
+                    </p>
+                    <h3>{skill.subtitle}</h3>
+                    <p>{skill.description}</p>
+                    <ul class='skill-tags'>
+                      {skill.items.map((item) => (
+                        <li>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id='about'
+        class='section-shell section-space'
+        aria-labelledby='about-title'
+      >
+        <div class='about-grid'>
+          <div data-reveal>
+            <p class='eyebrow'>03 / BEHIND THE SCREEN</p>
+            <h2 id='about-title'>
+              A developer.<br />A thinker.<br /><span class='serif'
+                >A little obsessive.</span>
+            </h2>
+          </div>
+
+          <div class='about-copy' data-reveal>
+            <p class='large-copy'>
+              Good software should feel simple.<br />
+              Even when what powers it isn't.
+            </p>
+            <p>{profile.about}</p>
+            <div class='signature'>{profile.name}</div>
+            <p class='eyebrow'>THE DETAILS ARE THE WORK.</p>
+          </div>
+        </div>
+
+        <div class='principles' data-reveal>
+          <span>Clarity over clutter.</span>
+          <span>Purpose over decoration.</span>
+          <span>Craft over shortcuts.</span>
+        </div>
+      </section>
+
+      <section
+        class='process-section section-space'
+        aria-labelledby='process-title'
+      >
+        <div class='section-shell'>
+          <div class='section-heading' data-reveal>
+            <div>
+              <p class='eyebrow'>04 / HOW IT COMES TOGETHER</p>
+              <h2 id='process-title'>
+                Intentional.<br /><span class='serif'>At every step.</span>
+              </h2>
+            </div>
+          </div>
+
+          <div class='process-grid'>
+            {
+              process.map((step) => (
+                <article class='process-card' data-reveal data-tilt>
+                  <span class='process-number'>{step.number}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                  <span class='process-cross' aria-hidden='true'>
+                    +
+                  </span>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section
+        id='contact'
+        class='section-shell contact section-space'
+        aria-labelledby='contact-title'
+      >
+        <p class='eyebrow' data-reveal>05 / THE NEXT CHAPTER</p>
+
+        <h2 id='contact-title' data-reveal>
+          Have something<br /><span class='serif'>worth building?</span>
+        </h2>
+
+        <div class='contact-bottom' data-reveal>
+          <p>
+            A product, a collaboration, or a good problem.<br />
+            Let's start with a conversation.
+          </p>
+
+          {
+            profile.email ? (
+              <a class='contact-link' href={`mailto:${profile.email}`}>
+                Say hello <span aria-hidden='true'>↗</span>
+              </a>
+            ) : (
+              <p class='contact-setup'>Contact details coming soon.</p>
+            )
+          }
+        </div>
+      </section>
+    </main>
+
+    <footer class='footer section-shell'>
+      <a class='wordmark' href='#' aria-label='Back to top'>mk<span>h.</span></a
+      >
+      <p>© {year} {profile.name}</p>
+      <div class='footer-links'>
+        {
+          socialLinks.map((link) => (
+            <a href={link.url} target='_blank' rel='noopener noreferrer'>
+              {link.label} ↗
+            </a>
+          ))
+        }
+        <a href='#main'>Back to top ↑</a>
+      </div>
+    </footer>
+
+    <script>
+      import '../scripts/motion';
+    </script>
+  </body>
 </html>
